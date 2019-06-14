@@ -1,0 +1,15 @@
+version: '3'
+
+volumes:
+  local_postgres_data: {}
+
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: "./compose/local/postgres/Dockerfile"
+    image: {{ cookiecutter.project_slug }}_local_postgres
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.local/.postgres
